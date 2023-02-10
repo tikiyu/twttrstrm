@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\chris\.nuget\packages\mongodb.inmemory\1.0.5\contentFiles\any\netcoreapp3.1\libzstd.dll" />
+    <Content Remove="C:\Users\chris\.nuget\packages\mongodb.inmemory\1.0.5\contentFiles\any\netcoreapp3.1\snappy32.dll" />
+    <Content Remove="C:\Users\chris\.nuget\packages\mongodb.inmemory\1.0.5\contentFiles\any\netcoreapp3.1\snappy64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MongoDB.InMemory" Version="1.0.5" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
+  </ItemGroup>
+
+</Project>
