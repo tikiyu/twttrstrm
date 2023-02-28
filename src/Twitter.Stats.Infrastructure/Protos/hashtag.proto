@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "Twitter.Hashtag.Service";
+
+package hashtag;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service HashTagGrpc {
+  rpc InsertHashTag (HashtagListRequest) returns (google.protobuf.Empty);
+}
+
+message Hashtag {
+  string Tag = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+
+message HashtagListRequest {
+  repeated Hashtag hashtags = 1;
+}
+

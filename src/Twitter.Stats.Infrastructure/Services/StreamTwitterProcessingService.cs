@@ -49,21 +49,9 @@ namespace Twitter.Stats.API.Services
                 {
                     if (args.Tweet != null)
                     {
-
-                        batchTweet.Add(args.Tweet);
+                        await ExecuteSaveTweetsAsync(args.Tweet, cancellationToken);
 
                         _tweetCount++;
-               
-                        if (_tweetCount % _simulationSettings.MaxDegreeOfParallelism == 0) {
-                            var newList = batchTweet.ToList();
-                            await Parallel.ForEachAsync(newList, parallelOptions, async (tweet,cancellationToken) => {
-
-                               await ExecuteSaveTweetsAsync(tweet, cancellationToken);
-                           });
-
-                            batchTweet.Clear();
-                        }
-
 
                         DisplayLogs(stopWatch, args.Tweet);
                     }

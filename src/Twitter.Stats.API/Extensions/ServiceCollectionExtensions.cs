@@ -18,10 +18,12 @@ namespace Twitter.Stats.API.Extensions
             services.Configure<MongoDbSettings>(configuration.GetSection(nameof(MongoDbSettings)));
             services.Configure<HashtagSettings>(configuration.GetSection(nameof(HashtagSettings)));
             services.Configure<SimulationSettings>(configuration.GetSection(nameof(SimulationSettings)));
+            services.Configure<GrpcClientSettings>(configuration.GetSection(nameof(GrpcClientSettings)));
+            
 
             services.AddHostedService<StreamTwitterProcessingJob>();
             //services.AddHostedService<StreamTweetsJob>();
-            services.AddHostedService<DayTrendingHashTagCronJob>();
+         
 
             var retryPolicy = HttpPolicyExtensions
                 .HandleTransientHttpError()
@@ -38,6 +40,8 @@ namespace Twitter.Stats.API.Extensions
                 }
             }).AddPolicyHandler(retryPolicy);
 
+
+   
             services.AddScoped<ITwitterClient>(provider =>
             {
                 var option = provider.GetService<IOptions<TwitterClientSettings>>()?.Value;

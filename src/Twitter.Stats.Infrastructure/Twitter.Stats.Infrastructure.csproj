@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -13,16 +13,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Protos\hashtag.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="MongoDB.InMemory" Version="1.0.5" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	  <PackageReference Include="Google.Protobuf" Version="3.22.0" />
+	  <PackageReference Include="Grpc.Net.Client" Version="2.51.0" />
+	  <PackageReference Include="Grpc.Net.ClientFactory" Version="2.51.0" />
+	  <PackageReference Include="Grpc.Tools" Version="2.51.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Protos\hashtag.proto" GrpcServices="Client" />
+	</ItemGroup>
 
 </Project>

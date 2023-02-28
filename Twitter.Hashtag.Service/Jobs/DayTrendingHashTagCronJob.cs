@@ -3,7 +3,7 @@ using NCrontab;
 using Twitter.Stats.Application.Common.Interfaces;
 using Twitter.Stats.Application.Common.Settings;
 
-namespace Twitter.Stats.API.Jobs
+namespace Twitter.Hashtag.Service.Jobs
 {
     internal class DayTrendingHashTagCronJob : IHostedService, IDisposable
     {
@@ -88,7 +88,7 @@ namespace Twitter.Stats.API.Jobs
         private async Task DoWorkAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation(
-                $"{nameof(StreamTweetsJob)} is working.");
+                $"{nameof(DayTrendingHashTagCronJob)} is working.");
 
 
             while (!cancellationToken.IsCancellationRequested)

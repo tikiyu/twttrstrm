@@ -20,8 +20,8 @@ namespace Twitter.Stats.Application.Tweets.Queries
         {
             var tweets = await _repository.GetTweetsAsync(cancellationToken);
 
-            return tweets.AsQueryable().Where(x => x.CreatedAt > DateTime.Now.AddDays(-1))
-                   .OrderBy(x => x.CreatedAt)
+            return tweets.AsQueryable().Where(x => x.CreatedAt > DateTime.Now.AddMinutes(-10))
+                   .OrderByDescending(x => x.CreatedAt)
                    .ProjectTo<TweetDto>(_mapper.ConfigurationProvider)
                    .Take(request.Count);
         }
