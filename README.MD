@@ -3,6 +3,29 @@
 Utilize Twitter stream endpoint and processes tweets in real time. 
 The app should keep track of the # number of tweets received and top 10 hashtags
 
+## How to run
+ 1. Manage use secrets on project Twitter.Stats.API
+```
+{
+  "TwitterClientSettings": {
+    "Secrets": {
+      "ConsumerKey": "",
+      "ConsumerSecret": "",
+      "Token": ""
+    }
+  }
+}
+```
+ 2. Select Multiple startup projects start the following projects then click Start or F5
+	  - Twitter.Hashtag.Service
+	  - Twitter.Stats.API
+	  - Twitter.Web
+  
+ 4. Browser will open 3 tabs
+
+	 - [Twitter.Web](https://localhost:44439/) 
+	 - [Twitter.Stats.API](https://localhost:7286/swagger/index.html)
+	 - [Twitter.Hashtag.Service](https://localhost:7028/swagger/index.html)
 
 
 # Tech stack
