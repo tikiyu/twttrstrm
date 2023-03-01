@@ -22,8 +22,14 @@ namespace Twitter.Stats.API.Controllers
         public TweetsController(ILogger<TweetsController> logger, ITweetRepository repository, IMediator mediator, IHashTagService hashTagService)
             => (_logger, _repository, _mediator, _hashTagService) = (logger, repository, mediator, hashTagService);
 
+        /// <summary>
+        /// Gets the most recent tweets based on the Count parameter
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("recent")]
-        public async Task<IEnumerable<TweetDto>> GetRecentAsync([FromQuery] GetTweetsQuery query, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TweetDto>> GetRecentTweetsAsync([FromQuery] GetTweetsQuery query, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Request start Get Recent Tweets");
 
@@ -31,6 +37,12 @@ namespace Twitter.Stats.API.Controllers
 
         }
 
+        /// <summary>
+        /// Gets the paginated most recent tweets based on PageNumber and PageSize
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("page")]
         public async Task<ActionResult<PaginatedList<TweetDto>>> GetPaginatedTweetsAsync([FromQuery] GetPaginatedTweetsQuery query, CancellationToken cancellationToken)
         {
