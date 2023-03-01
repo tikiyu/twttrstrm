@@ -1,9 +1,7 @@
-using Autofac.Core;
 using Serilog;
 using Twitter.Stats.API.Extensions;
 using Twitter.Stats.API.Filters;
 using Twitter.Stats.API.Hubs;
-using Twitter.Stats.API.Jobs;
 using Twitter.Stats.Application.Extensions;
 using Twitter.Stats.Infrastructure.Extensions;
 
