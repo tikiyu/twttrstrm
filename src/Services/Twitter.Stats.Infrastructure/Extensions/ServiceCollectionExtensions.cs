@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using System.Net.Http;
+using Tweetinvi.Models;
+using Tweetinvi;
 using Twitter.Stats.API.Services;
 using Twitter.Stats.Application.Common.Helpers;
 using Twitter.Stats.Application.Common.Interfaces;
@@ -29,6 +31,20 @@ namespace Twitter.Stats.Infrastructure.Extensions
             services.AddScoped<IDayTrendingHashTagService, DayTrendingHashTagService>();
 
             services.AddScoped<IHashTagService, HashTagService>();
+
+            services.AddScoped<ITwitterClient>(provider =>
+            {
+                var option = provider.GetService<IOptions<TwitterClientSettings>>()?.Value;
+
+                var appCredentials = new ConsumerOnlyCredentials(option?.Secrets.ConsumerKey, option?.Secrets.ConsumerSecret)
+                {
+                    BearerToken = option?.Secrets.Token
+                };
+
+                var twitterClient = new TwitterClient(appCredentials);
+                return twitterClient;
+
+            });
 
             services.AddGrpcClient<Hashtag.Service.HashTagGrpc.HashTagGrpcClient>("HashTagGrpcClient", (provider, o) =>
             {

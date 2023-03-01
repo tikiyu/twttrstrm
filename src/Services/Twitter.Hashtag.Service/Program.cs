@@ -5,11 +5,12 @@ using Twitter.Hashtag.Service.Filters;
 using Twitter.Hashtag.Service.Hubs;
 using Twitter.Hashtag.Service.Jobs;
 using Twitter.Hashtag.Service.Services;
-using Twitter.Stats.API.Extensions;
+using Twitter.Stats.Application.Common.Settings;
 using Twitter.Stats.Application.Extensions;
 using Twitter.Stats.Application.HashTags.Commands;
 using Twitter.Stats.Application.HashTags.Queries.GetTrendingHashTags;
 using Twitter.Stats.Infrastructure.Extensions;
+using Twitter.Stats.Infrastructure.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +34,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddMediatR(typeof(CreateHashTagCommand));
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddApiServices(builder.Configuration);
+//builder.Services.AddApiServices(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -47,6 +48,9 @@ builder.Services.AddHostedService<DayTrendingHashTagCronJob>();
 builder.Services.AddMediatR(typeof(GetTrendingHashTagsQuery));
 builder.Services.AddSingleton<IMediator, Mediator>();
 builder.Services.AddSingleton<TrendingHub>();
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+builder.Services.Configure<HashtagSettings>(builder.Configuration.GetSection(nameof(HashtagSettings)));
+builder.Services.Configure<HashtagSettings>(builder.Configuration.GetSection(nameof(HashtagSettings)));
 
 builder.Services.AddControllers(options =>
             options.Filters.Add<ApiExceptionFilterAttribute>());

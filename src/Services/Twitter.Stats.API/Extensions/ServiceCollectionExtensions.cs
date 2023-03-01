@@ -41,22 +41,6 @@ namespace Twitter.Stats.API.Extensions
                 }
             }).AddPolicyHandler(retryPolicy);
 
-
-   
-            services.AddScoped<ITwitterClient>(provider =>
-            {
-                var option = provider.GetService<IOptions<TwitterClientSettings>>()?.Value;
-
-                var appCredentials = new ConsumerOnlyCredentials(option?.Secrets.ConsumerKey, option?.Secrets.ConsumerSecret)
-                {
-                    BearerToken = option?.Secrets.Token
-                };
-
-                var twitterClient = new TwitterClient(appCredentials);
-                return twitterClient;
-
-            });
-
             services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;

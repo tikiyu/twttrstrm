@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 using Twitter.Hashtag.Service.Controllers;
-using Twitter.Stats.API.Hubs;
 using Twitter.Stats.Application.Common.Settings;
 using Twitter.Stats.Application.HashTags.Queries.GetTrendingHashTags;
 

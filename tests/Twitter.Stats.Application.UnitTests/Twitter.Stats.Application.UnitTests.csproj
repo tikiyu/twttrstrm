@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
   </ItemGroup>
 
 </Project>
