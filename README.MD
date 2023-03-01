@@ -12,8 +12,11 @@ The app should keep track of the # number of tweets received and top 10 hashtags
  - ASP.NET Core API
  - SignalR
  - gRPC
+ - MongoDB (In-Memory)
+ - Cache (In-Memory)
 
-## App Components
+
+## System Components
 
  - **Twitter.Web** - Web application that displays the following:
 	 - Recent Twitter Feed
