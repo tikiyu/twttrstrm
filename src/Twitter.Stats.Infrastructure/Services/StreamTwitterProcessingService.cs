@@ -36,10 +36,10 @@ namespace Twitter.Stats.API.Services
             stopWatch.Start();
             var batchTweet = new List<TweetV2>();
 
-            ParallelOptions parallelOptions = new()
-            {
-                MaxDegreeOfParallelism = _simulationSettings.MaxDegreeOfParallelism
-            };
+            //ParallelOptions parallelOptions = new()
+            //{
+            //    MaxDegreeOfParallelism = _simulationSettings.MaxDegreeOfParallelism
+            //};
 
             while (!cancellationToken.IsCancellationRequested)
             {
