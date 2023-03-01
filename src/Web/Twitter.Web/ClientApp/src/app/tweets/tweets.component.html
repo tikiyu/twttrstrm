@@ -1,0 +1,27 @@
+
+<p *ngIf="!tweets?.length"><em>Loading...</em></p>
+
+<div class="row">
+  <div class="col-md-6 col-xs-12 col-md-offset-3">
+    <div class="panel">
+      <div class="panel-heading">
+        <!-- <span class="text-info">x tweets received</span> -->
+        <h3 class="panel-title">Twitter Feed</h3>
+      </div>
+      <div class="panel-body">
+        <div class="clearfix"></div>
+        <hr class="margin-bottom-10">
+        <ul class="list-group list-group-dividered list-group-full">
+          <li class="list-group-item" *ngFor="let tweet of tweets">
+            <div class="media">
+              <div class="media-body">
+                <small class="text-muted pull-right">{{ tweet.createdAt }}</small>
+                <div [innerHTML]="tweet.text | atMention"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

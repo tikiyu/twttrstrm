@@ -34,6 +34,12 @@ namespace Twitter.Stats.API.Services
 
             Stopwatch stopWatch = new();
             stopWatch.Start();
+            var batchTweet = new List<TweetV2>();
+
+            ParallelOptions parallelOptions = new()
+            {
+                MaxDegreeOfParallelism = _simulationSettings.MaxDegreeOfParallelism
+            };
 
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -43,7 +49,7 @@ namespace Twitter.Stats.API.Services
                 {
                     if (args.Tweet != null)
                     {
-                        await ExecuteSaveTweetsAsync(args.Tweet);
+                        await ExecuteSaveTweetsAsync(args.Tweet, cancellationToken);
 
                         _tweetCount++;
 
@@ -72,18 +78,18 @@ namespace Twitter.Stats.API.Services
             Console.SetCursorPosition(0, 7);
         }
 
-        private async Task ExecuteSaveTweetsAsync(TweetV2 tweet)
+        private async Task ExecuteSaveTweetsAsync(TweetV2 tweet, CancellationToken cancellationToken)
         {
             if (_simulationSettings.IsSimulation)
             {
                 for (int i = 0; i < _simulationSettings.TweetReceivedMultiplier; i++)
                 {
-                    await _mediator.Send(new CreateTweetCommand { Tweet = tweet }).ConfigureAwait(false);
+                    await _mediator.Send(new CreateTweetCommand { Tweet = tweet }, cancellationToken).ConfigureAwait(false);
                 }
             }
             else
             {
-                await _mediator.Send(new CreateTweetCommand { Tweet = tweet }).ConfigureAwait(false);
+                await _mediator.Send(new CreateTweetCommand { Tweet = tweet }, cancellationToken).ConfigureAwait(false);
             }
         }
     }

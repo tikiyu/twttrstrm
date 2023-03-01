@@ -7,6 +7,8 @@ namespace Twitter.Stats.Application.Common.Settings
         public string DayTrendingCronJobSchedule { get; set; }
         public int DayTrendingCronJobDelayInSecs { get; set; }
         public int DayTrendingCount { get; set; }
+        public int TrendingPushIntervalInMs { get; set; }
+        public int TopTrendingHashtagCount { get; set; }
 
     }
 }

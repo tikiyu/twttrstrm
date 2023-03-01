@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HashTags\Commands\" />
     <Folder Include="HashTags\EventHandlers\" />
   </ItemGroup>
 

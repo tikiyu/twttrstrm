@@ -4,5 +4,6 @@
     {
         public int TweetReceivedMultiplier { get; set; }
         public bool IsSimulation { get; set; }
+        public int MaxDegreeOfParallelism { get; set; }
     }
 }

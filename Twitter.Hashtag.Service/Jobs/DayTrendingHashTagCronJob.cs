@@ -3,7 +3,7 @@ using NCrontab;
 using Twitter.Stats.Application.Common.Interfaces;
 using Twitter.Stats.Application.Common.Settings;
 
-namespace Twitter.Stats.API.Jobs
+namespace Twitter.Hashtag.Service.Jobs
 {
     internal class DayTrendingHashTagCronJob : IHostedService, IDisposable
     {
@@ -58,9 +58,7 @@ namespace Twitter.Stats.API.Jobs
             {
                 _logger.LogInformation($"{nameof(DayTrendingHashTagCronJob)} has started.");
 
-                _timer = new Timer(async (state) => await DoWorkAsync(cancellationToken), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(-1));
-
-                //await DoWorkAsync(cancellationToken);
+                await DoWorkAsync(cancellationToken);
 
             }
             catch (Exception ex)
@@ -90,9 +88,8 @@ namespace Twitter.Stats.API.Jobs
         private async Task DoWorkAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation(
-                $"{nameof(StreamTweetsJob)} is working.");
+                $"{nameof(DayTrendingHashTagCronJob)} is working.");
 
-            var executionDelayInSeconds = _hashtagSettings.DayTrendingCronJobDelayInSecs * 1000;
 
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -116,9 +113,8 @@ namespace Twitter.Stats.API.Jobs
                 }
 
                 var delay = _nextRun - now;
-                _timer.Change(delay, TimeSpan.FromMilliseconds(-1));
 
-                //await Task.Delay(900, cancellationToken);
+                await Task.Delay(delay, cancellationToken);
             }
         }
 
