@@ -29,7 +29,6 @@ namespace Twitter.Stats.Infrastructure.Extensions
             services.AddScoped<IDayTrendingHashTagService, DayTrendingHashTagService>();
 
             services.AddScoped<IHashTagService, HashTagService>();
-            services.AddScoped<ITweetStatsService, TweetStatsService>();
 
             services.AddGrpcClient<Hashtag.Service.HashTagGrpc.HashTagGrpcClient>("HashTagGrpcClient", (provider, o) =>
             {

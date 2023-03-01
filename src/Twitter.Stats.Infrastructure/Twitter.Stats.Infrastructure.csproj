@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <None Remove="Protos\hashtag.proto" />
-    <None Remove="Protos\tweetstat.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +37,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="Protos\tweetstat.proto" GrpcServices="Client" />
 		<Protobuf Include="Protos\hashtag.proto" GrpcServices="Client" />
 	</ItemGroup>
 
