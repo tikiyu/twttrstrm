@@ -4,6 +4,7 @@ using Polly;
 using Polly.Extensions.Http;
 using Tweetinvi;
 using Tweetinvi.Models;
+using Twitter.Stats.API.Hubs;
 using Twitter.Stats.API.Jobs;
 using Twitter.Stats.Application.Common.Settings;
 using Twitter.Stats.Infrastructure.Settings;
@@ -23,7 +24,7 @@ namespace Twitter.Stats.API.Extensions
 
             services.AddHostedService<StreamTwitterProcessingJob>();
             //services.AddHostedService<StreamTweetsJob>();
-         
+            services.AddSingleton<TweetStatsHub>();
 
             var retryPolicy = HttpPolicyExtensions
                 .HandleTransientHttpError()
@@ -55,6 +56,21 @@ namespace Twitter.Stats.API.Extensions
                 return twitterClient;
 
             });
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                    .WithOrigins("https://localhost:44439")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
 
 
             return services;

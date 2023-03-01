@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\hashtag.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

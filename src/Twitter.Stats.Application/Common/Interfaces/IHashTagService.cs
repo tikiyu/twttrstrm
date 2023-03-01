@@ -9,6 +9,6 @@ namespace Twitter.Stats.Application.Common.Interfaces
 {
     public interface IHashTagService
     {
-        Task InsertHashTag(IEnumerable<HashTag> hashTags);
+        Task InsertHashTagAsync(IEnumerable<HashTag> hashTags);
     }
 }

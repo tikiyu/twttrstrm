@@ -9,6 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TweetsComponent } from './tweets/tweets.component';
 import { TrendingComponent } from './trending/trending.component';
 import { AtMentionPipe } from './pipes/atmention.pipe';
+import { ShortNumberPipe } from './pipes/shortNumberPipe';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { AtMentionPipe } from './pipes/atmention.pipe';
     NavMenuComponent,
     TweetsComponent,
     TrendingComponent,
-    AtMentionPipe
+    AtMentionPipe,
+    ShortNumberPipe 
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

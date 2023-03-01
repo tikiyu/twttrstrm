@@ -22,25 +22,15 @@ namespace Twitter.Stats.Application.HashTags.Commands
     public class CreateHashTagCommandCommandHandler : IRequestHandler<CreateHashTagCommand, Unit>
     {
         private readonly IHashTagService _hashTagService;
-        private readonly IMediator _mediator;
         private readonly IThreadSafeMemoryCache<string, FrequencyDictionary> _memoryCache;
-        private readonly HashtagSettings _hashtagSettings;
-        private readonly ParallelOptions _parallelOptions;
 
         public CreateHashTagCommandCommandHandler(
             IHashTagService hashTagService,
-            IMediator mediator,
             IOptions<HashtagSettings> hashtagSettings,
              IThreadSafeMemoryCache<string, FrequencyDictionary> memoryCache)
         {
             _hashTagService = hashTagService;
-            _mediator = mediator;
-            _hashtagSettings = hashtagSettings.Value;
             _memoryCache = memoryCache;
-            _parallelOptions = new()
-            {
-                MaxDegreeOfParallelism = Environment.ProcessorCount,
-            };
         }
 
         public async Task<Unit> Handle(CreateHashTagCommand request, CancellationToken cancellationToken)
@@ -52,7 +42,7 @@ namespace Twitter.Stats.Application.HashTags.Commands
                 Tag = tag
             }).ToList();
 
-            await _hashTagService.InsertHashTag(hashTags);
+            await _hashTagService.InsertHashTagAsync(hashTags);
 
             return Unit.Value;
         }

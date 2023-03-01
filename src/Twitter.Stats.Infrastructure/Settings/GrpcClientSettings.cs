@@ -8,6 +8,6 @@ namespace Twitter.Stats.Infrastructure.Settings
 {
     public class GrpcClientSettings
     {
-        public string Uri { get; set; }
+        public string HashTagServiceUri { get; set; }
     }
 }

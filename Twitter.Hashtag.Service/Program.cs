@@ -1,8 +1,8 @@
 using Autofac.Core;
 using MediatR;
 using Serilog;
+using Twitter.Hashtag.Service.Filters;
 using Twitter.Hashtag.Service.Hubs;
-using Twitter.Hashtag.Service.Hubs.Timers;
 using Twitter.Hashtag.Service.Jobs;
 using Twitter.Hashtag.Service.Services;
 using Twitter.Stats.API.Extensions;
@@ -42,12 +42,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<DayTrendingHashTagCronJob>();
-builder.Services.AddScoped<ExecutionManager>();
 
 // Register IMediator with scoped lifetime
 builder.Services.AddMediatR(typeof(GetTrendingHashTagsQuery));
 builder.Services.AddSingleton<IMediator, Mediator>();
 builder.Services.AddSingleton<TrendingHub>();
+
+builder.Services.AddControllers(options =>
+            options.Filters.Add<ApiExceptionFilterAttribute>());
 
 builder.Services.AddSignalR(options =>
 {

@@ -2,6 +2,7 @@ using Autofac.Core;
 using Serilog;
 using Twitter.Stats.API.Extensions;
 using Twitter.Stats.API.Filters;
+using Twitter.Stats.API.Hubs;
 using Twitter.Stats.API.Jobs;
 using Twitter.Stats.Application.Extensions;
 using Twitter.Stats.Infrastructure.Extensions;
@@ -43,6 +44,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapHub<TweetStatsHub>("/tweetStats");
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 

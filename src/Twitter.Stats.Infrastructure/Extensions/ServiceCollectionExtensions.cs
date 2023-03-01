@@ -9,6 +9,7 @@ using Twitter.Stats.Application.Common.Interfaces;
 using Twitter.Stats.Infrastructure.Cache;
 using Twitter.Stats.Infrastructure.Persistence;
 using Twitter.Stats.Infrastructure.Services;
+using Twitter.Stats.Infrastructure.Services.Grpc;
 using Twitter.Stats.Infrastructure.Settings;
 
 namespace Twitter.Stats.Infrastructure.Extensions
@@ -21,20 +22,21 @@ namespace Twitter.Stats.Infrastructure.Extensions
             services.AddSingleton<ITweetRepository, TweetRepository>();
             services.AddSingleton<IHashTagRepository, HashTagRepository>();
             services.AddSingleton<IThreadSafeMemoryCache<string, FrequencyDictionary>, ThreadSafeMemoryCache<string, FrequencyDictionary>>();
+            services.AddSingleton<IStreamStatsService, StreamStatsService>();
 
             services.AddScoped<IStreamTwitterProcessingService, StreamTwitterProcessingService>();
             services.AddScoped<IStreamTwitterService, StreamTwitterService>();
             services.AddScoped<IDayTrendingHashTagService, DayTrendingHashTagService>();
 
             services.AddScoped<IHashTagService, HashTagService>();
-
+            services.AddScoped<ITweetStatsService, TweetStatsService>();
 
             services.AddGrpcClient<Hashtag.Service.HashTagGrpc.HashTagGrpcClient>("HashTagGrpcClient", (provider, o) =>
             {
                 var option = provider.GetService<IOptions<GrpcClientSettings>>()?.Value;
                 if (option != null)
                 {
-                    o.Address = new Uri(option.Uri);
+                    o.Address = new Uri(option.HashTagServiceUri);
                 }
             });
 
@@ -43,4 +45,5 @@ namespace Twitter.Stats.Infrastructure.Extensions
         }
     }
 }
+
 

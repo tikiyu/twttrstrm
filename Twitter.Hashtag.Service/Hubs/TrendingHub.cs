@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 using Twitter.Hashtag.Service.Controllers;
+using Twitter.Stats.API.Hubs;
 using Twitter.Stats.Application.Common.Settings;
 using Twitter.Stats.Application.HashTags.Queries.GetTrendingHashTags;
 
@@ -32,9 +33,9 @@ namespace Twitter.Hashtag.Service.Hubs
         {
             var trendingHashtags = await _mediator.Send(new GetTrendingHashTagsQuery { TopCount = _hashtagSettings.TopTrendingHashtagCount });
 
-            await Clients.All.SendAsync("ReceiveTrendingHashtags", trendingHashtags); // send the tweets to all clients
+            await Clients.All.SendAsync("ReceiveTrendingHashtags", trendingHashtags);
 
-            _logger.LogInformation(nameof(PushTrendingHashtags));
+            _logger.LogInformation("{class}:{method}", nameof(TrendingHub), nameof(PushTrendingHashtags));
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Twitter.Stats.Application.Tweets.EventHandlers
                     Tag = item
                 }).ToList();
 
-                await _hashTagService.InsertHashTag(hashTags);
+                await _hashTagService.InsertHashTagAsync(hashTags);
 
                 //AddToCache(notification.Tweet.Hashtags);
 
