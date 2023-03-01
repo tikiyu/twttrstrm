@@ -27,7 +27,7 @@ export class TrendingComponent implements OnInit {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl(`${environment.hubUrl}trending`, { withCredentials: true })
+                            .withUrl(`${environment.hashTagsHubUrl}trending`, { withCredentials: true })
                             .withAutomaticReconnect()
                             .build();
     this.hubConnection

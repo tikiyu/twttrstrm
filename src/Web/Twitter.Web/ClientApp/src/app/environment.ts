@@ -1,4 +1,6 @@
 export const environment = {
     production: false,
-    hubUrl: 'https://localhost:7028/'
+    hashTagsHubUrl: 'https://localhost:7028/',
+    twitterStatsHubUrl: 'https://localhost:7286/',
+    tweetCount: 100
   };
