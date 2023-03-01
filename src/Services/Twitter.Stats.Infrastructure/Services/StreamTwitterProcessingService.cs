@@ -56,6 +56,8 @@ namespace Twitter.Stats.API.Services
                             TotalTweets = _tweetCount * _simulationSettings.TweetReceivedMultiplier,
                             TweetsPerSecond = (int)(_tweetCount * _simulationSettings.TweetReceivedMultiplier / stopWatch.Elapsed.TotalSeconds)
                         });
+
+                        DisplayLogs(stopWatch, args.Tweet);
                     }
                     else {
                         var errorResponse = JsonSerializer.Deserialize<TweetStreamErrorDetails>(args.Json);
@@ -67,19 +69,19 @@ namespace Twitter.Stats.API.Services
             }
         }
 
-        //private void DisplayLogs(Stopwatch stopWatch, TweetV2 tweet)
-        //{
+        private void DisplayLogs(Stopwatch stopWatch, TweetV2 tweet)
+        {
 
-        //    Console.SetCursorPosition(0, 0);
-        //    Console.Write(new string(' ', Console.WindowWidth));
-        //    Console.WriteLine($"Total Tweets Received: {_tweetCount * _simulationSettings.TweetReceivedMultiplier} - Processed Tweets per second: {(int)(_tweetCount * _simulationSettings.TweetReceivedMultiplier / stopWatch.Elapsed.TotalSeconds)}                                            ");
-        //    Console.Write(new string(' ', Console.WindowWidth));
-        //    Console.WriteLine($"Current Tweet: {tweet.Text[..Math.Min(tweet.Text.Length, 40)].Replace("\n", string.Empty)}...             ");
-        //    Console.Write(new string(' ', Console.WindowWidth));
-        //    Console.WriteLine($"=========================================================================================================");
-        //    Console.Write(new string(' ', Console.WindowWidth));
-        //    Console.SetCursorPosition(0, 7);
-        //}
+            Console.SetCursorPosition(0, 0);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.WriteLine($"Total Tweets Received: {_tweetCount * _simulationSettings.TweetReceivedMultiplier} - Processed Tweets per second: {(int)(_tweetCount * _simulationSettings.TweetReceivedMultiplier / stopWatch.Elapsed.TotalSeconds)}                                            ");
+            Console.Write(new string(' ', Console.WindowWidth));
+            //Console.WriteLine($"Current Tweet: {tweet.Text[..Math.Min(tweet.Text.Length, 40)].Replace("\n", string.Empty)}...             ");
+            //Console.Write(new string(' ', Console.WindowWidth));
+            Console.WriteLine($"=========================================================================================================");
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, 5);
+        }
 
         private async Task ExecuteSaveTweetsAsync(TweetV2 tweet, CancellationToken cancellationToken)
         {

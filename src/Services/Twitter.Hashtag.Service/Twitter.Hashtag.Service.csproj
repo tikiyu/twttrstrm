@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Twitter.Stats.API\Twitter.Stats.API.csproj" />
-    <ProjectReference Include="..\src\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
-    <ProjectReference Include="..\src\Twitter.Stats.Domain\Twitter.Stats.Domain.csproj" />
-    <ProjectReference Include="..\src\Twitter.Stats.Infrastructure\Twitter.Stats.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Twitter.Stats.API\Twitter.Stats.API.csproj" />
+    <ProjectReference Include="..\..\Twitter.Stats.Application\Twitter.Stats.Application.csproj" />
+    <ProjectReference Include="..\..\Twitter.Stats.Domain\Twitter.Stats.Domain.csproj" />
+    <ProjectReference Include="..\..\Twitter.Stats.Infrastructure\Twitter.Stats.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
